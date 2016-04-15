@@ -1,0 +1,13 @@
+.appTitle  {
+  margin-top: 60px;
+  font-family: "Oswald";
+  text-align: center;
+}
+
+.appContent {
+  font-family: "Oswald";
+}
+
+.channelLogo{
+  max-width: 50px;
+}
