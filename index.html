@@ -26,19 +26,10 @@
             <!-- Twitch List -->
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-2 appContent" ng-controller="mainController">
-                    <div class="container">
-                        <div class="streamList" ng-repeat="user in channelInfo">
+                    <ul class="streamList">
+                      <list-twitch/>
 
-                              Test Git
-                              <img class="channelLogo" ng-src="{{ user.logo }}">
-                              <h2 class="channelName">{{ user.display_name }}</h2>
-                              <p class="developer">{{ user.game }}</p>
-                              <p class="price">{{ user.status }}</p>
-
-
-                        </div>
-
-                    </div>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -41,3 +41,11 @@ myApp.controller('mainController',['$scope','twitch', function($scope, twitch){
     twitch.getChannelInfo($scope.users[i]).then(storeChannelInfo);
   }
 }]);
+
+myApp.directive('listTwitch', function(){
+
+  return {
+    restrict: 'E',
+    templateUrl: "js/directives/listTemplate.html"
+  };
+});
