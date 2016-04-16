@@ -1,7 +1,7 @@
 .appTitle  {
-  margin-top: 100px;
+  margin-top: 60px;
   font-family: "Oswald";
-  text-align: center;
+  text-align: left;
 }
 
 .appContent {
@@ -9,5 +9,18 @@
 }
 
 .channelLogo{
-  max-width: 50px;
+  max-width: 100px;
+}
+
+.listElements{
+  background-color: #DDD;
+  list-style: none;
+}
+.streamList{
+  padding: 0;
+  margin: 0;
+}
+
+.creditsText{
+  font-family: "Oswald";
 }

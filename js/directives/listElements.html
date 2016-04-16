@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<li class="listElements" ng-repeat="user in users">
-
+<li class="listElements well" ng-repeat="user in users">
 
       <img class="channelLogo" ng-src="{{ user.logo }}">
+
       <h2 class="channelName"> <a ng-href = "{{ user.channelUrl }}">{{ user.name }}</a></h2>
-      <p class="developer">{{ user.stream.stream }}</p>
-      <p class="developer">{{ user.channel.game }}</p>
       <p class="price">{{ user.status }}</p>
 
 
