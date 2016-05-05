@@ -1,16 +1,16 @@
 .appTitle  {
-  margin-top: 60px;
-  font-family: "Oswald";
-  text-align: left;
+	margin-top: 60px;
+	font-family: "Oswald";
+	text-align: left;
 }
 
 .appContent {
-  font-family: "Oswald";
+	font-family: "Oswald";
 }
 
 .channelLogo{
 	position: relative;
-  max-width: 100px;
+	max-width: 100px;
 	-webkit-box-shadow: 5px 5px 0 0 rgba(100,65,165,1);
 	-moz-box-shadow: 5px 5px 0 0 rgba(100,65,165,1);
 	box-shadow: 5px 5px 0 0 rgba(100,65,165,1);
@@ -42,7 +42,7 @@ a:link, a:active, a:hover, a:visited{
 }
 
 .listElements{
-  list-style: none;
+	list-style: none;
 	border-radius: 0;
 	background-color: #F1F1F1;
 	border-style: none;
@@ -52,12 +52,12 @@ a:link, a:active, a:hover, a:visited{
 	border-style: none;
 }
 .streamList{
-  padding: 0;
-  margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 .creditsText{
-  font-family: "Oswald";
+	font-family: "Oswald";
 	color: #F1F1F1;
 	margin-bottom: 50px;
 	margin-right: 10px;

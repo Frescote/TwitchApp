@@ -2,82 +2,82 @@ var myApp = angular.module('myApp', []);
 
 // HTTP Calls w/ promises
 myApp.factory('twitch', ['$http', '$q', function($http, $q) {
-  return {
-    getChannelInfo: function(username){
-      var deferred = $q.defer();
-      $http.get('https://api.twitch.tv/kraken/channels/' + username)
-          .then(function(data) {
-            deferred.resolve(data.data);
-          }, function(err) {
-            deferred.resolve([-1, username]);
-          });
-      return deferred.promise;
-    },
-    getStreamInfo: function(username){
-      var deferred = $q.defer();
-      $http.get('https://api.twitch.tv/kraken/streams/' + username)
-          .then(function(data) {
-            deferred.resolve(data.data);
-          }, function() {
-            deferred.resolve([-1, username]);
-          });
-      return deferred.promise;
-    }
-  };
+	return {
+		getChannelInfo: function(username){
+			var deferred = $q.defer();
+			$http.get('https://api.twitch.tv/kraken/channels/' + username)
+				.then(function(data) {
+					deferred.resolve(data.data);
+				}, function(err) {
+					deferred.resolve([-1, username]);
+				});
+			return deferred.promise;
+		},
+		getStreamInfo: function(username){
+			var deferred = $q.defer();
+			$http.get('https://api.twitch.tv/kraken/streams/' + username)
+				.then(function(data) {
+					deferred.resolve(data.data);
+				}, function() {
+					deferred.resolve([-1, username]);
+				});
+			return deferred.promise;
+		}
+	};
 }]);
 
 // App logic
 myApp.controller('mainController',['$scope', '$q','twitch', function($scope, $q, twitch){
 
-  var index = -1;
-  function user(username){
-    this.name = username;
-    this.status = "Offline";
-    this.channelUrl = '#';
-    this.logo = "assets/twitchDefaultAvatar.png";
-  }
+	var index = -1;
+	function user(username){
+		this.name = username;
+		this.status = "Offline";
+		this.channelUrl = '#';
+		this.logo = "assets/twitchDefaultAvatar.png";
+	}
 
-  $scope.users = [];
-  $scope.userList = ["freecodecamp", "twitchplayspokemon", "storbeck", "terakilobyte", "habathcx","robotcaleb","thomasballinger","noobs2ninjas","beohoff", "brunofin"];
+	$scope.users = [];
+	$scope.userList = ["freecodecamp", "twitchplayspokemon", "storbeck", "terakilobyte", "habathcx","robotcaleb","thomasballinger","noobs2ninjas","beohoff", "brunofin"];
 
 	// Initialize users
-  $scope.userList.forEach(function(username){
-      var newUser = new user(username);
-      $scope.users.push(newUser);
-  });
+	$scope.userList.forEach(function(username){
+		var newUser = new user(username);
+		$scope.users.push(newUser);
+	});
 
-  function storeUserData(data){
-    if(data[0][0] === -1 || data[1][0] === -1){
-			// Account not found
-      index = $scope.users.findIndex(function(element){
-        return data[0][1] === element.name;
-      });
-      $scope.users[index].status = "Channel not found.";
-    }else{
-      index = $scope.users.findIndex(function(element){
-        return data[0].name === element.name;
-      });
-      $scope.users[index].name = data[0].display_name;
-      $scope.users[index].logo = data[0].logo;
-      $scope.users[index].channelUrl = data[0].url;
-      if(data[1].stream !== null){
-        $scope.users[index].status = data[0].status;
-      }
-    }
-  }
+function storeUserData(data){
+	if(data[0][0] === -1 || data[1][0] === -1){
+		// Account not found
+		index = $scope.users.findIndex(function(element){
+			return data[0][1] === element.name;
+		});
+		$scope.users[index].status = "Channel not found.";
+	}else{
+		index = $scope.users.findIndex(function(element){
+			return data[0].name === element.name;
+		});
+		$scope.users[index].name = data[0].display_name;
+		$scope.users[index].logo = data[0].logo;
+		$scope.users[index].channelUrl = data[0].url;
+		if(data[1].stream !== null){
+			$scope.users[index].status = data[0].status;
+		}
+	}
+}
 
-  for(var i = 0; i < $scope.users.length; i++){
-    $q.all([
-      twitch.getChannelInfo($scope.users[i].name),
-      twitch.getStreamInfo($scope.users[i].name)
-    ]).then(storeUserData);
-  }
+	for(var i = 0; i < $scope.users.length; i++){
+		$q.all([
+			twitch.getChannelInfo($scope.users[i].name),
+			twitch.getStreamInfo($scope.users[i].name)
+		]).then(storeUserData);
+	}
 }]);
 
 // Render HTML
 myApp.directive('listTwitch', function(){
-  return {
-    restrict: 'E',
-    templateUrl: "js/directives/listElements.html"
-  };
+	return {
+		restrict: 'E',
+		templateUrl: "js/directives/listElements.html"
+	};
 });
