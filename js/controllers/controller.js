@@ -1,5 +1,6 @@
 myApp.controller('mainController',['$scope', '$q','twitch', function($scope, $q, twitch){
 
+	// Default user state
 	function user(username){
 		this.name = username;
 		this.status = "Offline";
@@ -9,6 +10,7 @@ myApp.controller('mainController',['$scope', '$q','twitch', function($scope, $q,
 		this.show = true;
 	}
 
+	// Store user data in users array as factory delivers
 	function storeUserData(data){
 		if(data[0][0] === -1 || data[1][0] === -1){
 			// Account not found
@@ -30,37 +32,41 @@ myApp.controller('mainController',['$scope', '$q','twitch', function($scope, $q,
 			}
 		}
 		sortUserDataByStatus();
-		$scope.usersLoaded++;
-		if($scope.usersLoaded === $scope.userList.length) {
+		usersLoaded++;
+		if(usersLoaded === userList.length) {
 			$scope.isLoadingComplete = true;
 		}
 	}
 
+	// Online > Offline > Not Found
 	function sortUserDataByStatus() {
 		$scope.users.sort( function (a, b) {
 			return a.status < b.status;
 		});
 	}
 
+	// For progress bar
 	$scope.getLoadingPercentage = function()  {
-		return (($scope.usersLoaded/$scope.users.length)*100).toString();
+		return ((usersLoaded/$scope.users.length)*100).toString();
 	}
 
 	//Variables
 	$scope.isLoadingComplete = false;
-	$scope.usersLoaded = 0;
+	var usersLoaded = 0;
 	var index = -1;
 	$scope.users = [];
-	$scope.userList = ["freecodecamp", "twitchplayspokemon", "storbeck", "terakilobyte", "habathcx","robotcaleb","thomasballinger","noobs2ninjas","beohoff", "brunofin"].sort( function (a, b) {
-		return a.toLowerCase() > b.toLowerCase();
-	});
+	var userList = ["freecodecamp", "twitchplayspokemon", "storbeck", "terakilobyte", "habathcx", "robotcaleb", "thomasballinger", "noobs2ninjas","beohoff",  "brunofin"];
 
-	// Initialize users
-	$scope.userList.forEach(function(username){
+
+	// Sort and initialize users
+	userList.sort( function (a, b) {
+		return a.toLowerCase() > b.toLowerCase();
+	}).forEach(function(username){
 		var newUser = new user(username);
 		$scope.users.push(newUser);
 	});
 
+	// Get data
 	for(var i = 0; i < $scope.users.length; i++){
 		$q.all([
 			twitch.getChannelInfo($scope.users[i].name),
