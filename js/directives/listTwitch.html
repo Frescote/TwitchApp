@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <!-- Stream List -->
 <li class="listElements well" ng-class="getUserClass(user)" ng-repeat="user in users" ng-show="isLoadingComplete">
+	<a ng-href = "{{ user.channelUrl }}">
 	<div class="row" >
 		  <img class="channelLogo" ng-src="{{ user.logo }}">
-		  <h2 class="channelName"> <a ng-href = "{{ user.channelUrl }}">{{ user.name }}</a></h2>
+		  <h2 class="channelName"> {{ user.name }}</h2>
 		  <p class="channelStatus">{{ user.status }}</p>
 	</div>
+	</a>
 </li>
