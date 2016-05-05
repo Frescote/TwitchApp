@@ -46,25 +46,25 @@ myApp.controller('mainController',['$scope', '$q','twitch', function($scope, $q,
 		$scope.users.push(newUser);
 	});
 
-function storeUserData(data){
-	if(data[0][0] === -1 || data[1][0] === -1){
-		// Account not found
-		index = $scope.users.findIndex(function(element){
-			return data[0][1] === element.name;
-		});
-		$scope.users[index].status = "Channel not found.";
-	}else{
-		index = $scope.users.findIndex(function(element){
-			return data[0].name === element.name;
-		});
-		$scope.users[index].name = data[0].display_name;
-		$scope.users[index].logo = data[0].logo;
-		$scope.users[index].channelUrl = data[0].url;
-		if(data[1].stream !== null){
-			$scope.users[index].status = data[0].status;
+	function storeUserData(data){
+		if(data[0][0] === -1 || data[1][0] === -1){
+			// Account not found
+			index = $scope.users.findIndex(function(element){
+				return data[0][1] === element.name;
+			});
+			$scope.users[index].status = "Channel not found.";
+		}else{
+			index = $scope.users.findIndex(function(element){
+				return data[0].name === element.name;
+			});
+			$scope.users[index].name = data[0].display_name;
+			$scope.users[index].logo = data[0].logo;
+			$scope.users[index].channelUrl = data[0].url;
+			if(data[1].stream !== null){
+				$scope.users[index].status = data[0].status;
+			}
 		}
 	}
-}
 
 	for(var i = 0; i < $scope.users.length; i++){
 		$q.all([
