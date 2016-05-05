@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-<!-- Loading bar -->
-<div class="progress" ng-hide="isLoadingComplete">
-	<div class="progress-bar" role="progressbar" aria-valuenow="{{ getLoadingPercentage() }}"
-	aria-valuemin="0"
-	aria-valuemax="100"
-	ng-style="{width : ( getLoadingPercentage() + '%' ) }"
-	>
-	</div>
-</div>
 <!-- Stream List -->
 <li class="listElements well" ng-repeat="user in users" ng-show="isLoadingComplete">
 	<div class="row">
