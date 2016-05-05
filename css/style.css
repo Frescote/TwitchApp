@@ -56,6 +56,13 @@ a:click{
 	border-style: none;
 }
 .listElements:hover{
+	border-style: solid;
+	border-width: 5px;
+	border-top: none;
+	border-bottom: none;
+	border-right-color: #B9A3E3;
+}
+.listElements:click{
 	background-color: #B9A3E3;
 }
 .streamList{
@@ -111,32 +118,4 @@ body{
 
 .user-not-found{
 	border-color: gray;
-}
-
-.btn-default{
-	float: right;
-	height: 30px;
-	border-style: solid;
-	border-width: 2px;
-	border-radius: 0;
-}
-.statusButtons{
-	position: absolute;
-	bottom: 20px;
-	right: 16px;
-}
-
-.online-btn{
-	border-color: green;
-}
-.online-btn.active{
-
-}
-
-.offline-btn{
-	border-color: red;
-}
-
-.not-found-btn{
-	border-color: grey;
 }
