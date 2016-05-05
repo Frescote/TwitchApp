@@ -23,10 +23,10 @@
 	pointer-events: none;
 }
 .channelName{
-		font-size: 36px;
-		position: relative;
-		left: 25px;
-		top: -23px;
+	font-size: 36px;
+	position: relative;
+	left: 25px;
+	top: -23px;
 }
 
 a:link, a:active, a:hover, a:visited{
@@ -35,10 +35,10 @@ a:link, a:active, a:hover, a:visited{
 }
 
 .channelStatus{
-		position: relative;
-		color: #262626;
-		left: 25px;
-		bottom: -11px;
+	position: relative;
+	color: #262626;
+	left: 25px;
+	bottom: -11px;
 }
 
 .listElements{
